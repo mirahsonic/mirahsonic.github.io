@@ -90,11 +90,11 @@
   <div class="artist-grid">
     <div class="artist-block">
       <span class="artist-tag">Foxes &amp; Lions</span>
-      <a href="https://open.spotify.com/artist/1Gst0nOqMMgpkhs1agyGMz" target="_blank" class="embed-link">&#9654; Foxes &amp; Lions on Spotify &#8599;</a>
+      <iframe class="spotify-embed" src="https://open.spotify.com/embed/artist/1Gst0nOqMMgpkhs1agyGMz?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
     <div class="artist-block">
       <span class="artist-tag">Boi Huerca</span>
-      <a href="https://open.spotify.com/artist/23iYO0suhrZBWBjE3bYKjU" target="_blank" class="embed-link">&#9654; Boi Huerca on Spotify &#8599;</a>
+      <iframe class="spotify-embed" src="https://open.spotify.com/embed/artist/23iYO0suhrZBWBjE3bYKjU?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -107,11 +107,11 @@
   <div class="tracks-list">
     <div class="track-block">
       <span class="track-tag">Featured</span>
-      <a href="https://open.spotify.com/track/1ol8Wv5Gftm0lHv9rbFdGz" target="_blank" class="embed-link">&#9654; Listen: Suddenly on Spotify &#8599;</a>
+      <iframe class="track-embed" src="https://open.spotify.com/embed/track/1ol8Wv5Gftm0lHv9rbFdGz?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
     <div class="track-block">
       <span class="track-tag">Featured</span>
-      <a href="https://open.spotify.com/track/67KFe9gxmeDZbvtE1pqTJs" target="_blank" class="embed-link">&#9654; Listen: Dear My Anxiety on Spotify &#8599;</a>
+      <iframe class="track-embed" src="https://open.spotify.com/embed/track/67KFe9gxmeDZbvtE1pqTJs?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -123,13 +123,15 @@
   <p class="section-label">Contact</p>
   <div class="contact-inner">
     <h2>Let's work together.</h2>
-    
-    <div class="form-row"><label>Name</label><input type="text" placeholder="Your name"></div>
-    <div class="form-row"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-    <div class="form-row"><label>Project</label><input type="text" placeholder="Brief description"></div>
-    <div class="form-row"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
-    <a href="mailto:haideralimir.mx@gmail.com" class="submit-btn" style="text-decoration:none;">Send Message &rarr;</a>
-    
+    <form action="https://formspree.io/f/mgoqybeb" method="POST">
+    <input type="hidden" name="_replyto" value="haideralimir.mx@gmail.com">
+    <input type="hidden" name="_subject" value="New inquiry from haideralimir.com">
+    <div class="form-row"><label>Name</label><input type="text" name="name" placeholder="Your name"></div>
+    <div class="form-row"><label>Email</label><input type="email" name="email" placeholder="your@email.com"></div>
+    <div class="form-row"><label>Project</label><input type="text" name="project" placeholder="Brief description"></div>
+    <div class="form-row"><label>Message</label><textarea name="message" placeholder="Tell me about your project..."></textarea></div>
+    <button class="submit-btn" type="submit">Send Message &rarr;</button>
+    </form>
   </div>
 </section>
 
@@ -139,5 +141,39 @@
   <a class="nav-insta" href="https://www.instagram.com/haideralimusic/" target="_blank" style="font-size:0.6rem;letter-spacing:0.15em;color:#4a4540;text-transform:uppercase;text-decoration:none;">Instagram &#8599;</a>
 </footer>
 
+
+<script>
+document.querySelectorAll('form[action*="formspree"]').forEach(form => {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.6';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Message Sent ✓';
+        btn.style.color = '#c9a96e';
+        form.reset();
+        setTimeout(() => { btn.textContent = original; btn.style.opacity = '1'; btn.disabled = false; }, 3000);
+      } else {
+        btn.textContent = 'Error — Try Again';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Error — Try Again';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    }
+  });
+});
+</script>
 </body>
 </html>
