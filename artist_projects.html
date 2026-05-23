@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artist Projects — Haider Ali Mir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0a; color: #e8e2d9; font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: #e8e2d9; text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: #b0a898; text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: #e8e2d9; }
+  .nav-links a.active { color: #e8e2d9; border-bottom: 0.5px solid rgba(201,169,110,0.6); padding-bottom: 2px; }
+  .nav-insta { font-size: 0.68rem; letter-spacing: 0.1em; color: #b0a898; text-decoration: none; transition: color 0.3s; }
+  .nav-insta:hover { color: #e8e2d9; }
+
+  /* PAGE HEADER */
+  .page-header { padding: 8rem 3rem 3rem; border-bottom: 0.5px solid rgba(255,255,255,0.06); animation: fadeUp 0.9s ease both; }
+  .page-eyebrow { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: #c9a96e; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+  .page-eyebrow::before { content: ''; width: 2rem; height: 0.5px; background: rgba(201,169,110,0.5); }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.1; }
+  .page-title em { font-style: italic; color: #c9a96e; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* SHARED */
+  section { padding: 4rem 3rem; }
+  .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: #c9a96e; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 1; height: 0.5px; background: rgba(201,169,110,0.3); }
+  .divider { height: 0.5px; background: linear-gradient(to right, transparent, rgba(201,169,110,0.2), transparent); margin: 0 3rem; }
+
+  /* ARTIST PROFILES */
+  .artist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .artist-block { display: flex; flex-direction: column; gap: 0.75rem; }
+  .artist-tag { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: #7a7065; }
+  .spotify-embed { width: 100%; height: 352px; border: none; display: block; background: #0f0f0f; border-radius: 0; }
+
+  /* FEATURED TRACKS */
+  .tracks-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .track-block { display: flex; flex-direction: column; gap: 0.75rem; }
+  .track-tag { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: #7a7065; }
+  .track-embed { width: 100%; height: 232px; border: none; display: block; background: #0f0f0f; }
+
+  .embed-link { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: #c9a96e; border: 0.5px solid rgba(201,169,110,0.4); padding: 0.9rem 1.6rem; text-decoration: none; transition: background 0.3s; }
+  .embed-link:hover { background: rgba(201,169,110,0.08); }
+  /* CONTACT */
+  .contact-inner { max-width: 540px; }
+  .contact-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; font-style: italic; margin-bottom: 0.5rem; }
+  .form-row { margin-bottom: 1.2rem; }
+  .form-row label { display: block; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: #7a7065; margin-bottom: 0.5rem; }
+  .form-row input, .form-row textarea { width: 100%; background: transparent; border: none; border-bottom: 0.5px solid rgba(232,226,217,0.2); padding: 0.6rem 0; color: #e8e2d9; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 300; outline: none; transition: border-color 0.3s; }
+  .form-row input:focus, .form-row textarea:focus { border-color: rgba(201,169,110,0.6); }
+  .form-row textarea { resize: none; height: 80px; }
+  .submit-btn { margin-top: 1.5rem; font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: #c9a96e; border: 0.5px solid rgba(201,169,110,0.5); background: transparent; padding: 0.8rem 2rem; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+  .submit-btn:hover { background: rgba(201,169,110,0.1); }
+
+  footer { padding: 2rem 3rem; border-top: 0.5px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-size: 0.6rem; letter-spacing: 0.15em; color: #4a4540; text-transform: uppercase; }
+
+  /* ── HAMBURGER NAV ── */
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 200; }
+  .nav-hamburger span { display: block; width: 24px; height: 1.5px; background: #e8e2d9; transition: all 0.3s; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    /* NAV */
+    nav { padding: 1.2rem 1.5rem; background: rgba(10,10,10,0.98); }
+    .nav-hamburger { display: flex; }
+    .nav-insta { display: none; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.98);
+      align-items: center;
+      justify-content: center;
+      z-index: 150;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { border-bottom: 0.5px solid rgba(255,255,255,0.06); width: 100%; text-align: center; }
+    .nav-links a { display: block; padding: 1.2rem; font-size: 0.8rem; letter-spacing: 0.3em; color: #e8e2d9; }
+    .nav-links a.active { color: #c9a96e; border-bottom: none; }
+
+    /* GLOBAL */
+    section { padding: 2.5rem 1.5rem; }
+    .divider { margin: 0 1.5rem; }
+    .section-label { margin-bottom: 1.5rem; }
+    .page-header { padding: 6rem 1.5rem 2rem; }
+    .page-title { font-size: 2rem; }
+
+    /* FORMS */
+    .contact-inner { max-width: 100%; }
+    .submit-btn { width: 100%; text-align: center; justify-content: center; }
+  }
+
+  @media (max-width: 768px) {
+    .artist-grid { grid-template-columns: 1fr; }
+    .spotify-embed { height: 280px; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Haider Ali Mir</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="film_scores.html">Film Scores</a></li>
+    <li><a href="genres.html">Genres</a></li>
+    <li><a href="artist_projects.html" class="active">Artist Projects</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-insta" href="https://www.instagram.com/haideralimusic/" target="_blank">&#8599; Instagram</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-eyebrow">Artist Projects</p>
+  <h1 class="page-title">Music as an <em>Artist</em></h1>
+</div>
+
+<!-- ARTIST PROFILES -->
+<section>
+  <p class="section-label">Artist Profiles</p>
+  <div class="artist-grid">
+    <div class="artist-block">
+      <span class="artist-tag">Foxes &amp; Lions</span>
+      <iframe class="spotify-embed" src="https://open.spotify.com/embed/artist/1Gst0nOqMMgpkhs1agyGMz?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div class="artist-block">
+      <span class="artist-tag">Boi Huerca</span>
+      <iframe class="spotify-embed" src="https://open.spotify.com/embed/artist/23iYO0suhrZBWBjE3bYKjU?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED TRACKS -->
+<section>
+  <p class="section-label">Featured Tracks</p>
+  <div class="tracks-list">
+    <div class="track-block">
+      <span class="track-tag">Featured</span>
+      <iframe class="track-embed" src="https://open.spotify.com/embed/track/1ol8Wv5Gftm0lHv9rbFdGz?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    <div class="track-block">
+      <span class="track-tag">Featured</span>
+      <iframe class="track-embed" src="https://open.spotify.com/embed/track/67KFe9gxmeDZbvtE1pqTJs?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section>
+  <p class="section-label">Contact</p>
+  <div class="contact-inner">
+    <h2>Let's work together.</h2>
+    <form action="https://formspree.io/f/mgoqybeb" method="POST">
+    <input type="hidden" name="_replyto" value="haideralimir.mx@gmail.com">
+    <input type="hidden" name="_subject" value="New inquiry from haideralimir.com">
+    <div class="form-row"><label>Name</label><input type="text" name="name" placeholder="Your name"></div>
+    <div class="form-row"><label>Email</label><input type="email" name="email" placeholder="your@email.com"></div>
+    <div class="form-row"><label>Project</label><input type="text" name="project" placeholder="Brief description"></div>
+    <div class="form-row"><label>Message</label><textarea name="message" placeholder="Tell me about your project..."></textarea></div>
+    <button class="submit-btn" type="submit">Send Message &rarr;</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Haider Ali Mir</p>
+  <p>Film Composer &mdash; Los Angeles</p>
+  <a class="nav-insta" href="https://www.instagram.com/haideralimusic/" target="_blank" style="font-size:0.6rem;letter-spacing:0.15em;color:#4a4540;text-transform:uppercase;text-decoration:none;">Instagram &#8599;</a>
+</footer>
+
+
+<script>
+document.querySelectorAll('form[action*="formspree"]').forEach(form => {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.6';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = 'Message Sent ✓';
+        btn.style.color = '#c9a96e';
+        form.reset();
+        setTimeout(() => { btn.textContent = original; btn.style.opacity = '1'; btn.disabled = false; }, 3000);
+      } else {
+        btn.textContent = 'Error — Try Again';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Error — Try Again';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    }
+  });
+});
+</script>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
