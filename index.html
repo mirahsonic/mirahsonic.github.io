@@ -34,6 +34,9 @@
 
   .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .video-card { position: relative; aspect-ratio: 16/9; background: #111; overflow: hidden; cursor: pointer; }
+  .video-card iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .video-card.playing iframe { opacity: 1; pointer-events: all; }
+  .video-card.playing .video-card-thumb, .video-card.playing .video-play, .video-card.playing .video-label { opacity: 0; pointer-events: none; }
   .video-card-thumb { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: opacity 0.4s; }
   .video-card:hover .video-card-thumb { opacity: 0.85; }
   .video-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
@@ -131,13 +134,15 @@
 <section>
   <p class="section-label">Latest Work</p>
   <div class="video-grid">
-    <div class="video-card">
+    <div class="video-card" onclick="playVideo(this, '3h3buvaP8II')">
       <img class="video-card-thumb" src="https://i.ytimg.com/vi/3h3buvaP8II/hqdefault.jpg" alt="Latest work 1">
+      <iframe data-src="https://www.youtube.com/embed/3h3buvaP8II?autoplay=1" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       <div class="video-play"><div class="play-btn"><div class="play-icon"></div></div></div>
       <span class="video-label">Recent Project</span>
     </div>
-    <div class="video-card">
+    <div class="video-card" onclick="playVideo(this, '_WtFF4YAGto')">
       <img class="video-card-thumb" src="https://i.ytimg.com/vi/_WtFF4YAGto/hqdefault.jpg" alt="Latest work 2">
+      <iframe data-src="https://www.youtube.com/embed/_WtFF4YAGto?autoplay=1" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       <div class="video-play"><div class="play-btn"><div class="play-icon"></div></div></div>
       <span class="video-label">Recent Project</span>
     </div>
@@ -149,13 +154,15 @@
 <section>
   <p class="section-label">Film Score Reel</p>
   <div class="video-grid">
-    <div class="video-card">
+    <div class="video-card" onclick="playVideo(this, '9YbzoxkyqCs')">
       <img class="video-card-thumb" src="https://i.ytimg.com/vi/9YbzoxkyqCs/hqdefault.jpg" alt="Film score reel">
+      <iframe data-src="https://www.youtube.com/embed/9YbzoxkyqCs?autoplay=1" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       <div class="video-play"><div class="play-btn"><div class="play-icon"></div></div></div>
       <span class="video-label">Score Reel</span>
     </div>
-    <div class="video-card">
+    <div class="video-card" onclick="playVideo(this, 'HMv5vd05Wzw')">
       <img class="video-card-thumb" src="https://i.ytimg.com/vi/HMv5vd05Wzw/hqdefault.jpg" alt="Film score reel 2">
+      <iframe data-src="https://www.youtube.com/embed/HMv5vd05Wzw?autoplay=1" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       <div class="video-play"><div class="play-btn"><div class="play-icon"></div></div></div>
       <span class="video-label">Score Reel</span>
     </div>
@@ -355,6 +362,15 @@ function selectGenre(el) {
       'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/' + pid +
       '&color=%23c9a96e&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false';
   }
+}
+
+function playVideo(card, id) {
+  document.querySelectorAll('.video-card.playing').forEach(c => {
+    if (c !== card) { c.classList.remove('playing'); c.querySelector('iframe').src = ''; }
+  });
+  const iframe = card.querySelector('iframe');
+  iframe.src = iframe.dataset.src;
+  card.classList.add('playing');
 }
 </script>
 
